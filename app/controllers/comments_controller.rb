@@ -4,17 +4,17 @@ class CommentsController < ApplicationController
     @comment = @trail.comments.new(comment_params)
 
     if @comment.save
-      flash[:notice] = "Комментарий успешно добавлен"
-      redirect_to trail_path(@trail) # Перенаправление на страницу маршрута
+      flash[:notice] = "Комментарий добавлен"
+      redirect_to @trail
     else
-      flash[:alert] = "Ошибка при добавлении комментария"
-      redirect_to trail_path(@trail) # Перенаправление на страницу маршрута
+      flash.now[:alert] = "Ошибка при добавлении комментария"
+      render 'trails/show'
     end
   end
 
   private
 
   def comment_params
-  params.require(:comment).permit(:content)
-end
+    params.require(:comment).permit(:content)
+  end
 end

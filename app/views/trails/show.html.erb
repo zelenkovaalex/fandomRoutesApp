@@ -5,11 +5,22 @@
   <h1>Маршрут не найден</h1>
 <% end %>
 
-# <h3>Комментарии</h3>
-# <%= form_with(model: [@trail, Comment.new], local: true) do |form| %>
-#   <p>
-#     <%= form.label :content, "Добавить комментарий" %>
-#     <%= form.text_area :content %>
-#   </p>
-#   <%= form.submit "Добавить комментарий" %>
-# <% end %>
+<h2>Комментарии:</h2>
+<div>
+  <% @trail.comments.each do |comment| %>
+    <p><%= comment.content %></p>
+    <%= link_to 'Удалить комментарий', [@trail, comment], method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот комментарий?' } %>
+  <% end %>
+</div>
+
+<h2>Добавить комментарий:</h2>
+<%= form_with(model: [@trail, Comment.new], local: true) do |form| %>
+  <div>
+    <%= form.label :content, "Добавить комментарий" %>
+    <%= form.text_area :content %>
+  </div>
+  
+  <div>
+    <%= form.submit "Добавить комментарий" %>
+  </div>
+<% end %>
