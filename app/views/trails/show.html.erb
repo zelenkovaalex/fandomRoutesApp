@@ -1,0 +1,15 @@
+<% if @trail %>
+  <h1><%= @trail.title %></h1>
+  <p><%= @trail.description %></p>
+<% else %>
+  <h1>Маршрут не найден</h1>
+<% end %>
+
+# <h3>Комментарии</h3>
+# <%= form_with(model: [@trail, Comment.new], local: true) do |form| %>
+#   <p>
+#     <%= form.label :content, "Добавить комментарий" %>
+#     <%= form.text_area :content %>
+#   </p>
+#   <%= form.submit "Добавить комментарий" %>
+# <% end %>

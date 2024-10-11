@@ -1,0 +1,35 @@
+<h1>Маршруты</h1>
+
+<%= link_to 'Создать новый маршрут', new_trail_path %>
+
+<% @trails.each do |trail| %>
+  <div>
+    <h2><%= trail.title %></h2>
+    <p><%= trail.description %></p>
+    <%= link_to 'Удалить', trail, method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот маршрут?' } %>
+
+    <h2>Комментарии:</h2>
+
+        <div>
+        <% trail.comments.each do |comment| %>
+            <div>
+                <p><%= comment.content %></p>
+                <%= link_to 'Удалить комментарий', [trail, comment], method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот комментарий?' } %>
+            </div>
+        <% end %>
+        </div>
+
+        <p>Добавить комментарий:</p>
+
+        <%= form_with(model: [trail, Comment.new], local: true) do |form| %>
+        <div>
+            <%= form.label :content, style: "display: block" %>
+            <%= form.text_area :content %>
+        </div>
+
+        <div>
+            <%= form.submit "Отправить" %>
+        </div>
+        <% end %>
+  </div>
+<% end %>
