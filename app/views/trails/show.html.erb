@@ -9,7 +9,7 @@
 <div>
   <% @trail.comments.each do |comment| %>
     <p><%= comment.content %></p>
-    <%= link_to 'Удалить комментарий', [@trail, comment], method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот комментарий?' } %>
+    <%= link_to 'Удалить комментарий', [@trail, comment], method: :delete%>
   <% end %>
 </div>
 
